@@ -10,5 +10,5 @@ package Grafo;
  * @author EPS
  */
 public class Grafo {
-    int n;
+
 }
