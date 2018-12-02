@@ -48,7 +48,7 @@ public class Implementacion2Graph implements Graph {
         boolean enc = false;
         Vertex aux = vertice0;
         Vertex resul = null;
-        
+
         while (aux != null && !enc) {
             Edge edge = aux.getEdge();
             while (edge != null && !enc) {
@@ -67,17 +67,19 @@ public class Implementacion2Graph implements Graph {
     public boolean areAdjacent(Vertex v, Vertex w) {
         boolean enc = false;
         Edge aux = v.getEdge();
-        while (!enc && aux.getNext() != null) {
+        while (!enc && aux != null) {
             if (aux.getVertex() == w) {
                 enc = true;
             }
+            aux = aux.getNext();
         }
         if (!enc) {
             aux = w.getEdge();
-            while (!enc && aux.getNext() != null) {
+            while (!enc && aux != null) {
                 if (aux.getVertex() == v) {
                     enc = true;
                 }
+                aux = aux.getNext();
             }
         }
 
@@ -122,14 +124,19 @@ public class Implementacion2Graph implements Graph {
 
     @Override
     public boolean insertEdge(Vertex v, Vertex w, Object o) {
-        int i = getIndex(v);
-        int j = getIndex(w);
-        boolean resul = false;
-        if (matrizAdyaciencia[i][j] != null) {
-            matrizAdyaciencia[i][j] = new Edge(o);
-            resul = true;
+        boolean enc = false;
+        Edge aux = v.getEdge();
+        while (aux != null && !enc) {
+            if (aux.getVertex() == w) {
+                enc = true;
+            }
+            aux = aux.getNext();
         }
-        return resul;
+        if (enc) {
+            aux = new Edge(o);
+            aux.setVertex(w);
+        }
+        return enc;
     }
 
     @Override
