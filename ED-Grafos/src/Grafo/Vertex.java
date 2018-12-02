@@ -44,6 +44,5 @@ public class Vertex {
     public void setEdge(Edge edge) {
         this.edge = edge;
     }
-    
-    
+
 }
