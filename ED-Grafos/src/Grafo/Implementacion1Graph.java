@@ -16,7 +16,8 @@ public class Implementacion1Graph implements Graph {
     Edge[][] matrizAdyaciencia;
     Vertex vertice0;
 
-    public Implementacion1Graph(Vertex v) {
+    public Implementacion1Graph(Object o) {
+        Vertex v = new Vertex(o);
         vertice0 = v;
         matrizAdyaciencia = new Edge[1][1];
     }

@@ -17,7 +17,8 @@ public class Implementacion2Graph implements Graph {
 
     Vertex vertice0;
 
-    public Implementacion2Graph(Vertex v) {
+    public Implementacion2Graph(Object o) {
+        Vertex v = new Vertex(o);
         vertice0 = v;
     }
 

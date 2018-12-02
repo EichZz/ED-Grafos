@@ -30,9 +30,7 @@ public class Edge {
 
     public Edge(Object ele, Edge n) {
         this.element = ele;
-        this.next = n;
-        
-        
+        this.next = n;  
     }
 
     public Object getElement() {
