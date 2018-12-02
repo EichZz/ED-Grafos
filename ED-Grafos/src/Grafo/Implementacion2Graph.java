@@ -171,12 +171,12 @@ public class Implementacion2Graph implements Graph {
     @Override
     public Iterator edges() {
         List aux = new ArrayList();
-        int max = matrizAdyaciencia[0].length;
-        for (int i = 0; i < max; i++) {
-            for (int j = 0; j < max; j++) {
-                if (matrizAdyaciencia[i][j] != null) {
-                    aux.add(matrizAdyaciencia[i][j]);
-                }
+        Iterator <Vertex>it = vertices();
+        while(it.hasNext()){
+            Edge edge = it.next().getEdge();
+            while(edge != null){
+                aux.add(edge);
+                edge = edge.getNext();
             }
         }
         return aux.iterator();
