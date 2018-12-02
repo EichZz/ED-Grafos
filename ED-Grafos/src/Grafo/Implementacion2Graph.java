@@ -28,11 +28,11 @@ public class Implementacion2Graph implements Graph {
         Vertex aux = vertice0;
 
         while (aux != null) {
-            while (aux.getEdge() != null) {
-                Edge edge = aux.getEdge();
+            Edge edge = aux.getEdge();
+            while (edge != null) {
                 if (edge == e) {
                     vectorVertices[0] = aux;
-                    vectorVertices[1] = aux.getEdge().getVertex();
+                    vectorVertices[1] = edge.getVertex();
                 }
                 edge = edge.getNext();
             }
@@ -56,9 +56,23 @@ public class Implementacion2Graph implements Graph {
 
     @Override
     public boolean areAdjacent(Vertex v, Vertex w) {
-        int i = getIndex(v);
-        int j = getIndex(w);
-        return matrizAdyaciencia[i][j] != null || matrizAdyaciencia[j][i] != null;
+        boolean enc = false;
+        Edge aux = v.getEdge();
+        while (!enc && aux.getNext() != null) {
+            if (aux.getVertex() == w) {
+                enc = true;
+            }
+        }
+        if (!enc) {
+            aux = w.getEdge();
+            while (!enc && aux.getNext() != null) {
+                if (aux.getVertex() == v) {
+                    enc = true;
+                }
+            }
+        }
+
+        return enc;
     }
 
     @Override

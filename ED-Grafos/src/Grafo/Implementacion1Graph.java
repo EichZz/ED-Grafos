@@ -144,6 +144,7 @@ public class Implementacion1Graph implements Graph {
         Vertex next = vertice0;
         while (next != null) {
             aux.add(next);
+            next = next.getNext();
         }
         return aux.iterator();
     }
@@ -243,19 +244,20 @@ public class Implementacion1Graph implements Graph {
         }
         matrizAdyaciencia = matrizaux;
     }
-    private void ampliarMatriz(){
+
+    private void ampliarMatriz() {
         int max = matrizAdyaciencia[0].length;
-            Edge[][] matrizaux = new Edge[max + 1][max + 1];
-            
-            int i = 0;
-            while (i < max) {
-                int j = 0;
-                while (j < max) {
-                    matrizaux[i][j] = matrizAdyaciencia[i][j];
-                    j++;
-                }
-                i++;
+        Edge[][] matrizaux = new Edge[max + 1][max + 1];
+
+        int i = 0;
+        while (i < max) {
+            int j = 0;
+            while (j < max) {
+                matrizaux[i][j] = matrizAdyaciencia[i][j];
+                j++;
             }
-            matrizAdyaciencia = matrizaux;
+            i++;
+        }
+        matrizAdyaciencia = matrizaux;
     }
 }
