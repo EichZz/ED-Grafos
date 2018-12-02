@@ -90,27 +90,31 @@ public class Implementacion1Graph implements Graph {
 
     @Override
     public boolean insertVertex(Object o) {
-        boolean contains = contains()
-       Vertex nuevo = new Vertex(o);
-        Iterator<Vertex> it = vertices();
-         Vertex aux = vertice0; 
-        while(it.hasNext()){
-            aux =(Vertex) it.next();
-        }
-        aux.setNext(nuevo);
-        int max = matrizAdyaciencia[0].length;
-        Edge[][] matrizaux = new Edge[max+1][max+1];
         
-        int i = 0;
-        while (i < max) {
-            int j = 0;
-            while (j < max) {
-                matrizaux[i][j] = matrizAdyaciencia[i][j];
-                j++;
+        boolean contains = contains(o);
+        if (contains) {
+            Vertex nuevo = new Vertex(o);
+            Iterator<Vertex> it = vertices();
+            Vertex aux = vertice0;
+            while (it.hasNext()) {
+                aux = (Vertex) it.next();
             }
-            i++;
+            aux.setNext(nuevo);
+            int max = matrizAdyaciencia[0].length;
+            Edge[][] matrizaux = new Edge[max + 1][max + 1];
+
+            int i = 0;
+            while (i < max) {
+                int j = 0;
+                while (j < max) {
+                    matrizaux[i][j] = matrizAdyaciencia[i][j];
+                    j++;
+                }
+                i++;
+            }
+            matrizAdyaciencia = matrizaux;
         }
-        matrizAdyaciencia = matrizaux;
+        return contains;
     }
 
     @Override
