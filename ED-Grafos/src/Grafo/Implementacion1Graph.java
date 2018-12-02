@@ -174,11 +174,11 @@ public class Implementacion1Graph implements Graph {
         return contains;
     }
 
-    private boolean contains(Vertex v) {
-        Iterator it = vertices();
+    private boolean contains(Object o) {
+        Iterator<Vertex> it = vertices();
         boolean contains = false;
         while (!contains && it.hasNext()) {
-            if (it.next() == v) {
+            if (it.next().getId() == o) {
                 contains = true;
             }
         }
