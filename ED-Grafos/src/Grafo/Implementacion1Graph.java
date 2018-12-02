@@ -112,12 +112,11 @@ public class Implementacion1Graph implements Graph {
 
     @Override
     public boolean removeEdge(Edge e) {
-        boolean resul = false;
-        if (contains(e)) {
+        boolean contains = contains(e);
+        if (contains) {
             e = null;
-            resul = true;
         }
-        return resul;
+        return contains;
     }
 
     @Override
