@@ -132,7 +132,11 @@ public class Implementacion1Graph implements Graph {
 
     @Override
     public boolean removeEdge(Edge e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean contains = contains(e);
+        if (contains) {
+            e = null;
+        }
+        return contains;
     }
 
     @Override
@@ -177,5 +181,27 @@ public class Implementacion1Graph implements Graph {
             i++;
         }
         return aux;
+    }
+
+    private boolean contains(Edge e) {
+        Iterator it = edges();
+        boolean contains = false;
+        while (!contains && it.hasNext()) {
+            if (it.next() == e) {
+                contains = true;
+            }
+        }
+        return contains;
+    }
+
+    private boolean contains(Object o) {
+        Iterator<Vertex> it = vertices();
+        boolean contains = false;
+        while (!contains && it.hasNext()) {
+            if (it.next().getId() == o) {
+                contains = true;
+            }
+        }
+        return contains;
     }
 }
