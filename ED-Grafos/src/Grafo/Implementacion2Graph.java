@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author hecto
  */
-public class Implementacion2Graph implements Graph{
+public class Implementacion2Graph implements Graph {
 
     Vertex vertice0;
 
@@ -26,13 +26,19 @@ public class Implementacion2Graph implements Graph{
         Vertex[] vectorVertices = null;
 
         Vertex aux = vertice0;
-        
-        while(aux.getNext() != null){
-            if(aux.getEdge() == e){}
-                vectorVertices[0] = aux;
-                vectorVertices[1] = aux.getEdge().getVertex();
+
+        while (aux != null) {
+            while (aux.getEdge() != null) {
+                Edge edge = aux.getEdge();
+                if (edge == e) {
+                    vectorVertices[0] = aux;
+                    vectorVertices[1] = aux.getEdge().getVertex();
+                }
+                edge = edge.getNext();
+            }
+            aux = aux.getNext();
         }
-        
+
         return vectorVertices;
     }
 
@@ -230,20 +236,21 @@ public class Implementacion2Graph implements Graph{
         }
         matrizAdyaciencia = matrizaux;
     }
-    private void ampliarMatriz(){
+
+    private void ampliarMatriz() {
         int max = matrizAdyaciencia[0].length;
-            Edge[][] matrizaux = new Edge[max + 1][max + 1];
-            
-            int i = 0;
-            while (i < max) {
-                int j = 0;
-                while (j < max) {
-                    matrizaux[i][j] = matrizAdyaciencia[i][j];
-                    j++;
-                }
-                i++;
+        Edge[][] matrizaux = new Edge[max + 1][max + 1];
+
+        int i = 0;
+        while (i < max) {
+            int j = 0;
+            while (j < max) {
+                matrizaux[i][j] = matrizAdyaciencia[i][j];
+                j++;
             }
-            matrizAdyaciencia = matrizaux;
+            i++;
+        }
+        matrizAdyaciencia = matrizaux;
     }
 
 }
