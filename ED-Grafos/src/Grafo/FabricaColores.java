@@ -13,10 +13,10 @@ import java.util.*;
  */
 public class FabricaColores {
 
-    private Graph colores;
+    Graph colores;
 
     public FabricaColores(Object o) {
-        colores = new Implementacion1Graph(o);
+        colores = new Implementacion2Graph(o);
     }
 
     public void resolver() {
