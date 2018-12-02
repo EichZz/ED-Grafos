@@ -7,8 +7,8 @@ package Grafo;
 
 /**
  *
- * @author EPS
+ * @author hecto
  */
-public class Grafo {
-
+public class FabricaColores {
+    
 }
