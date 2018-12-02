@@ -22,5 +22,23 @@ public class Edge {
     public Edge(Object ele, Edge n) {
         this.element = ele;
         this.next = n;
+        
+        
+    }
+
+    public Object getElement() {
+        return element;
+    }
+
+    public void setElement(Object element) {
+        this.element = element;
+    }
+
+    public Edge getNext() {
+        return next;
+    }
+
+    public void setNext(Edge next) {
+        this.next = next;
     }
 }

@@ -20,4 +20,30 @@ public class Vertex {
         this.next = null;
         this.edge = null;
     }
+
+    public Object getId() {
+        return id;
+    }
+
+    public void setId(Object id) {
+        this.id = id;
+    }
+
+    public Vertex getNext() {
+        return next;
+    }
+
+    public void setNext(Vertex next) {
+        this.next = next;
+    }
+
+    public Edge getEdge() {
+        return edge;
+    }
+
+    public void setEdge(Edge edge) {
+        this.edge = edge;
+    }
+    
+    
 }
