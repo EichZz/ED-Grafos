@@ -5,13 +5,20 @@
  */
 package Grafo;
 
-import java.util.Iterator;
+import java.util.*;
 
 /**
  *
  * @author EPS
  */
-public class Implementacion1Graph implements Graph{
+public class Implementacion1Graph implements Graph {
+
+    Edge[][] matrizAdyaciencia;
+    Vertex vertice0;
+
+    public Implementacion1Graph(Vertex v) {
+
+    }
 
     @Override
     public Vertex[] endVertices(Edge e) {
@@ -68,4 +75,13 @@ public class Implementacion1Graph implements Graph{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    private int getIndex(Vertex v) {
+        Vertex aux = vertice0;
+        int i = 0;
+        while (aux != v) {
+            aux = aux.getNext();
+            i++;
+        }
+        return i;
+    }
 }
