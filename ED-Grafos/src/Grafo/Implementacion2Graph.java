@@ -46,19 +46,15 @@ public class Implementacion2Graph implements Graph {
     @Override
     public Vertex opposite(Vertex v, Edge e) {
         boolean enc = false;
-        Vertex aux = vertice0;
         Vertex resul = null;
 
-        while (aux != null && !enc) {
-            Edge edge = aux.getEdge();
-            while (edge != null && !enc) {
-                if (edge == e) {
-                    resul = edge.getVertex();
-                    enc = true;
-                }
-                edge = edge.getNext();
+        Edge edge = v.getEdge();
+        while (edge != null && !enc) {
+            if (edge == e) {
+                resul = edge.getVertex();
+                enc = true;
             }
-            aux = aux.getNext();
+            edge = edge.getNext();
         }
         return resul;
     }
@@ -132,11 +128,11 @@ public class Implementacion2Graph implements Graph {
             }
             aux = aux.getNext();
         }
-        if (enc) {
+        if (!enc) {
             aux = new Edge(o);
             aux.setVertex(w);
         }
-        return enc;
+        return !enc;
     }
 
     @Override
@@ -153,7 +149,7 @@ public class Implementacion2Graph implements Graph {
     public boolean removeEdge(Edge e) {
         boolean contains = contains(e);
         if (contains) {
-            e = null;
+            disengageEdge(e);
         }
         return contains;
     }
@@ -171,10 +167,10 @@ public class Implementacion2Graph implements Graph {
     @Override
     public Iterator edges() {
         List aux = new ArrayList();
-        Iterator <Vertex>it = vertices();
-        while(it.hasNext()){
+        Iterator<Vertex> it = vertices();
+        while (it.hasNext()) {
             Edge edge = it.next().getEdge();
-            while(edge != null){
+            while (edge != null) {
                 aux.add(edge);
                 edge = edge.getNext();
             }
@@ -229,6 +225,29 @@ public class Implementacion2Graph implements Graph {
             vertice0 = vertice0.getNext();
         } else {
             getVertex(getIndex(v) - 1).setNext(v.getNext());
+        }
+    }
+
+    private void disengageEdge(Edge e) {
+        boolean enc = false;
+        Vertex aux = vertice0;
+
+        while (aux != null && !enc) {
+            Edge edge = aux.getEdge();
+            Edge next = edge.getNext();
+            if (edge == e) {
+                aux.setEdge(next);
+                enc = true;
+            }
+            while (next != null && !enc) {
+                if (next == e) {
+                    edge.setNext(next.getNext());
+                    enc = true;
+                }
+                edge = next;
+                next = edge.getNext();
+            }
+            aux = aux.getNext();
         }
     }
 }
