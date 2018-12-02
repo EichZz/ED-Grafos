@@ -100,19 +100,7 @@ public class Implementacion1Graph implements Graph {
                 aux = (Vertex) it.next();
             }
             aux.setNext(nuevo);
-            int max = matrizAdyaciencia[0].length;
-            Edge[][] matrizaux = new Edge[max + 1][max + 1];
-            
-            int i = 0;
-            while (i < max) {
-                int j = 0;
-                while (j < max) {
-                    matrizaux[i][j] = matrizAdyaciencia[i][j];
-                    j++;
-                }
-                i++;
-            }
-            matrizAdyaciencia = matrizaux;
+            ampliarMatriz();
         }
         return contains;
     }
@@ -251,5 +239,21 @@ public class Implementacion1Graph implements Graph {
         } else {            
             getVertex(getIndex(v) - 1).setNext(v.getNext());
         }
+    }
+    
+    private void ampliarMatriz(){
+        int max = matrizAdyaciencia[0].length;
+            Edge[][] matrizaux = new Edge[max + 1][max + 1];
+            
+            int i = 0;
+            while (i < max) {
+                int j = 0;
+                while (j < max) {
+                    matrizaux[i][j] = matrizAdyaciencia[i][j];
+                    j++;
+                }
+                i++;
+            }
+            matrizAdyaciencia = matrizaux;
     }
 }
