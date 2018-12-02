@@ -12,26 +12,26 @@ import java.util.*;
  * @author EPS
  */
 public class Implementacion1Graph implements Graph {
-    
+
     Edge[][] matrizAdyaciencia;
     Vertex vertice0;
-    
+
     public Implementacion1Graph(Vertex v) {
         vertice0 = v;
         matrizAdyaciencia = new Edge[1][1];
     }
-    
+
     @Override
     public Vertex[] endVertices(Edge e) {
         Vertex[] vectorVertices = null;
-        
+
         Vertex aux = vertice0;
-        
+
         int max = matrizAdyaciencia[0].length;
         int i = 0;
         int j = 0;
         boolean enc = false;
-        
+
         while (i < max && !enc) {
             j = 0;
             while (j < max && !enc) {
@@ -48,7 +48,7 @@ public class Implementacion1Graph implements Graph {
         }
         return vectorVertices;
     }
-    
+
     @Override
     public Vertex opposite(Vertex v, Edge e) {
         Vertex[] aux = endVertices(e);
@@ -60,14 +60,14 @@ public class Implementacion1Graph implements Graph {
         }
         return resul;
     }
-    
+
     @Override
     public boolean areAdjacent(Vertex v, Vertex w) {
         int i = getIndex(v);
         int j = getIndex(w);
         return matrizAdyaciencia[i][j] != null || matrizAdyaciencia[j][i] != null;
     }
-    
+
     @Override
     public boolean replace(Vertex v, Object x) {
         boolean resul = false;
@@ -77,7 +77,7 @@ public class Implementacion1Graph implements Graph {
         }
         return resul;
     }
-    
+
     @Override
     public boolean replace(Edge e, Object x) {
         boolean resul = false;
@@ -87,10 +87,10 @@ public class Implementacion1Graph implements Graph {
         }
         return resul;
     }
-    
+
     @Override
     public boolean insertVertex(Object o) {
-        
+
         boolean contains = contains(o);
         if (contains) {
             Vertex nuevo = new Vertex(o);
@@ -104,7 +104,7 @@ public class Implementacion1Graph implements Graph {
         }
         return contains;
     }
-    
+
     @Override
     public boolean insertEdge(Vertex v, Vertex w, Object o) {
         int i = getIndex(v);
@@ -116,48 +116,19 @@ public class Implementacion1Graph implements Graph {
         }
         return resul;
     }
-    
+
     @Override
     public boolean removeVertex(Vertex v) {
-        
+
         boolean contains = contains(v.getId());
         if (contains) {
-            
-            int max = matrizAdyaciencia[0].length;
-            Edge[][] matrizaux = new Edge[max - 1][max - 1];
             int index = getIndex(v);
-            
-            int posi = 0;            
-            int i = 0;
-            
-            while (i < max) {
-                
-                int j = 0;
-                int posj = 0;
-                
-                if (i != index) {
-                    
-                    while (j < max) {
-                        
-                        if (j != index) {
-                            matrizaux[i - posi][j - posj] = matrizAdyaciencia[i][j];
-                        } else {
-                            posj++;
-                        }
-                        j++;
-                    }
-                    
-                } else {
-                    posi++;
-                }
-                i++;
-            }
-            matrizAdyaciencia = matrizaux;
+            reducirMatriz(index);
             disengageVertex(v);
         }
         return contains;
     }
-    
+
     @Override
     public boolean removeEdge(Edge e) {
         boolean contains = contains(e);
@@ -166,7 +137,7 @@ public class Implementacion1Graph implements Graph {
         }
         return contains;
     }
-    
+
     @Override
     public Iterator vertices() {
         List aux = new ArrayList();
@@ -176,7 +147,7 @@ public class Implementacion1Graph implements Graph {
         }
         return aux.iterator();
     }
-    
+
     @Override
     public Iterator edges() {
         List aux = new ArrayList();
@@ -190,7 +161,7 @@ public class Implementacion1Graph implements Graph {
         }
         return aux.iterator();
     }
-    
+
     private int getIndex(Vertex v) {
         Vertex aux = vertice0;
         int i = 0;
@@ -200,7 +171,7 @@ public class Implementacion1Graph implements Graph {
         }
         return i;
     }
-    
+
     private Vertex getVertex(int index) {
         Vertex aux = vertice0;
         int i = 0;
@@ -210,7 +181,7 @@ public class Implementacion1Graph implements Graph {
         }
         return aux;
     }
-    
+
     private boolean contains(Edge e) {
         Iterator it = edges();
         boolean contains = false;
@@ -221,7 +192,7 @@ public class Implementacion1Graph implements Graph {
         }
         return contains;
     }
-    
+
     private boolean contains(Object o) {
         Iterator<Vertex> it = vertices();
         boolean contains = false;
@@ -232,15 +203,46 @@ public class Implementacion1Graph implements Graph {
         }
         return contains;
     }
-    
+
     private void disengageVertex(Vertex v) {
         if (v == vertice0) {
             vertice0 = vertice0.getNext();
-        } else {            
+        } else {
             getVertex(getIndex(v) - 1).setNext(v.getNext());
         }
     }
-    
+
+    private void reducirMatriz(int index) {
+        int max = matrizAdyaciencia[0].length;
+        Edge[][] matrizaux = new Edge[max - 1][max - 1];
+
+        int posi = 0;
+        int i = 0;
+
+        while (i < max) {
+
+            int j = 0;
+            int posj = 0;
+
+            if (i != index) {
+
+                while (j < max) {
+
+                    if (j != index) {
+                        matrizaux[i - posi][j - posj] = matrizAdyaciencia[i][j];
+                    } else {
+                        posj++;
+                    }
+                    j++;
+                }
+
+            } else {
+                posi++;
+            }
+            i++;
+        }
+        matrizAdyaciencia = matrizaux;
+    }
     private void ampliarMatriz(){
         int max = matrizAdyaciencia[0].length;
             Edge[][] matrizaux = new Edge[max + 1][max + 1];
