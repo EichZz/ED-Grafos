@@ -70,12 +70,22 @@ public class Implementacion1Graph implements Graph {
 
     @Override
     public boolean replace(Vertex v, Object x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean resul = false;
+        if (v != null) {
+            v.setId(x);
+            resul = true;
+        }
+        return resul;
     }
 
     @Override
     public boolean replace(Edge e, Object x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean resul = false;
+        if (e != null) {
+            e.setElement(x);
+            resul = true;
+        }
+        return resul;
     }
 
     @Override
@@ -92,7 +102,14 @@ public class Implementacion1Graph implements Graph {
 
     @Override
     public boolean insertEdge(Vertex v, Vertex w, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int i = getIndex(v);
+        int j = getIndex(w);
+        boolean resul = false;
+        if (matrizAdyaciencia[i][j] != null) {
+            matrizAdyaciencia[i][j] = new Edge(o);
+            resul = true;
+        }
+        return resul;
     }
 
     @Override
@@ -107,12 +124,26 @@ public class Implementacion1Graph implements Graph {
 
     @Override
     public Iterator vertices() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List aux = new ArrayList();
+        Vertex next = vertice0;
+        while (next != null) {
+            aux.add(next);
+        }
+        return aux.iterator();
     }
 
     @Override
     public Iterator edges() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List aux = new ArrayList();
+        int max = matrizAdyaciencia[0].length;
+        for (int i = 0; i < max; i++) {
+            for (int j = 0; j < max; j++) {
+                if (matrizAdyaciencia[i][j] != null) {
+                    aux.add(matrizAdyaciencia[i][j]);
+                }
+            }
+        }
+        return aux.iterator();
     }
 
     private int getIndex(Vertex v) {
