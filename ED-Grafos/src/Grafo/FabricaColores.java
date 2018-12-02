@@ -10,5 +10,11 @@ package Grafo;
  * @author hecto
  */
 public class FabricaColores {
-    
+
+    private Graph colores;
+
+    public FabricaColores(Object o) {
+        colores = new Implementacion1Graph(o);
+    }
+
 }
