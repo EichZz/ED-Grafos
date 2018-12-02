@@ -11,9 +11,9 @@ package Grafo;
  */
 public class Vertex {
 
-    Object id;
-    Vertex next;
-    Edge edge;
+    private Object id;
+    private Vertex next;
+    private Edge edge;
 
     public Vertex(Object ele) {
         this.id = ele;

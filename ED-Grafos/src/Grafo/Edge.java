@@ -11,8 +11,8 @@ package Grafo;
  */
 public class Edge {
 
-    Object element;
-    Edge next;
+    private Object element;
+    private Edge next;
 
     public Edge(Object ele) {
         this.element = ele;

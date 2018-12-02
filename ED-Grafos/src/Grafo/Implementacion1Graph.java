@@ -12,7 +12,7 @@ import java.util.Iterator;
  * @author EPS
  */
 public class Implementacion1Graph implements Graph{
-
+    
     @Override
     public Vertex[] endVertices(Edge e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
