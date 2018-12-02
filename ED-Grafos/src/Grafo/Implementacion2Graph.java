@@ -132,11 +132,11 @@ public class Implementacion2Graph implements Graph {
             }
             aux = aux.getNext();
         }
-        if (enc) {
+        if (!enc) {
             aux = new Edge(o);
             aux.setVertex(w);
         }
-        return enc;
+        return !enc;
     }
 
     @Override
