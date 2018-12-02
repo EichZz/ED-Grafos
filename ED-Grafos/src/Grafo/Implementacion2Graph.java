@@ -24,15 +24,16 @@ public class Implementacion2Graph implements Graph {
     @Override
     public Vertex[] endVertices(Edge e) {
         Vertex[] vectorVertices = null;
-
+        boolean enc = false;
         Vertex aux = vertice0;
 
-        while (aux != null) {
+        while (aux != null && !enc) {
             Edge edge = aux.getEdge();
-            while (edge != null) {
+            while (edge != null && !enc) {
                 if (edge == e) {
                     vectorVertices[0] = aux;
                     vectorVertices[1] = edge.getVertex();
+                    enc = true;
                 }
                 edge = edge.getNext();
             }
@@ -44,12 +45,20 @@ public class Implementacion2Graph implements Graph {
 
     @Override
     public Vertex opposite(Vertex v, Edge e) {
-        Vertex[] aux = endVertices(e);
+        boolean enc = false;
+        Vertex aux = vertice0;
         Vertex resul = null;
-        if (aux[0] == v) {
-            resul = aux[1];
-        } else if (aux[1] == v) {
-            resul = aux[0];
+        
+        while (aux != null && !enc) {
+            Edge edge = aux.getEdge();
+            while (edge != null && !enc) {
+                if (edge == e) {
+                    resul = edge.getVertex();
+                    enc = true;
+                }
+                edge = edge.getNext();
+            }
+            aux = aux.getNext();
         }
         return resul;
     }
@@ -107,7 +116,6 @@ public class Implementacion2Graph implements Graph {
                 aux = (Vertex) it.next();
             }
             aux.setNext(nuevo);
-            ampliarMatriz();
         }
         return contains;
     }
@@ -129,8 +137,6 @@ public class Implementacion2Graph implements Graph {
 
         boolean contains = contains(v.getId());
         if (contains) {
-            int index = getIndex(v);
-            reducirMatriz(index);
             disengageVertex(v);
         }
         return contains;
