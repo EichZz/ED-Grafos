@@ -15,7 +15,7 @@ public interface Graph {
 
     Vertex[] endVertices(Edge e);
 
-    Edge opposite(Vertex v, Edge e);
+    Vertex opposite(Vertex v, Edge e);
 
     boolean areAdjacent(Vertex v, Vertex w);
 

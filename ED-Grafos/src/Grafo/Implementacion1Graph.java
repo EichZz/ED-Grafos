@@ -27,7 +27,7 @@ public class Implementacion1Graph implements Graph {
     }
 
     @Override
-    public Edge opposite(Vertex v, Edge e) {
+    public Vertex opposite(Vertex v, Edge e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
