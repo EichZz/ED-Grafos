@@ -23,11 +23,34 @@ public class Implementacion1Graph implements Graph {
 
     @Override
     public Vertex[] endVertices(Edge e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Vertex[] vectorVertices = null;
+
+        Vertex aux = vertice0;
+
+        int max = matrizAdyaciencia[0].length;
+        int i = 0;
+        int j = 0;
+        boolean enc = false;
+
+        while (i < max && !enc) {
+
+            while (j < max && !enc) {
+                if (matrizAdyaciencia[i][j] == e) {
+                    enc = true;
+                }
+                j++;
+            }
+            i++;
+        }
+        if (enc) {
+            vectorVertices[0] = getVertex(i - 1);
+            vectorVertices[1] = getVertex(j - 1);
+        }
+        return vectorVertices;
     }
 
     @Override
-    public Edge opposite(Vertex v, Edge e) {
+    public Vertex opposite(Vertex v, Edge e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -85,9 +108,9 @@ public class Implementacion1Graph implements Graph {
         }
         return i;
     }
-    
-    private Vertex getVertex(int index){
-    Vertex aux = vertice0;
+
+    private Vertex getVertex(int index) {
+        Vertex aux = vertice0;
         int i = 0;
         while (i != index) {
             aux = aux.getNext();
