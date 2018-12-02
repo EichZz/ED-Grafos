@@ -33,7 +33,7 @@ public class Implementacion1Graph implements Graph {
         boolean enc = false;
 
         while (i < max && !enc) {
-
+            j=0;
             while (j < max && !enc) {
                 if (matrizAdyaciencia[i][j] == e) {
                     enc = true;
