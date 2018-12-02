@@ -33,7 +33,7 @@ public class Implementacion1Graph implements Graph {
         boolean enc = false;
 
         while (i < max && !enc) {
-
+            j = 0;
             while (j < max && !enc) {
                 if (matrizAdyaciencia[i][j] == e) {
                     enc = true;
@@ -51,12 +51,25 @@ public class Implementacion1Graph implements Graph {
 
     @Override
     public Vertex opposite(Vertex v, Edge e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Vertex[] aux = endVertices(e);
+        Vertex resul = null;
+        if (aux[0] == v) {
+            resul = aux[1];
+        } else if (aux[1] == v) {
+            resul = aux[0];
+        }
+        return resul;
     }
 
     @Override
     public boolean areAdjacent(Vertex v, Vertex w) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int i = getIndex(v);
+        int j = getIndex(w);
+        if (matrizAdyaciencia[i][j] != null || matrizAdyaciencia[j][i] != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
