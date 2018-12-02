@@ -65,9 +65,23 @@ public class Implementacion2Graph implements Graph {
 
     @Override
     public boolean areAdjacent(Vertex v, Vertex w) {
-        int i = getIndex(v);
-        int j = getIndex(w);
-        return matrizAdyaciencia[i][j] != null || matrizAdyaciencia[j][i] != null;
+        boolean enc = false;
+        Edge aux = v.getEdge();
+        while (!enc && aux.getNext() != null) {
+            if (aux.getVertex() == w) {
+                enc = true;
+            }
+        }
+        if (!enc) {
+            aux = w.getEdge();
+            while (!enc && aux.getNext() != null) {
+                if (aux.getVertex() == v) {
+                    enc = true;
+                }
+            }
+        }
+
+        return enc;
     }
 
     @Override
