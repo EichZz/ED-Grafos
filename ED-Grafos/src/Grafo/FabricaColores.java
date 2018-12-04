@@ -16,10 +16,10 @@ public class FabricaColores {
     Graph colores;
 
     public FabricaColores(Object o) {
-        colores = new Implementacion2Graph(o);
+        colores = new Implementacion1Graph(o);
     }
 
-    public void resolver() {
+    public String resolver() {
         Iterator aristas = colores.edges();
 
         Edge min = ((Edge) aristas.next()), next;
@@ -72,18 +72,20 @@ public class FabricaColores {
             vertices = colores.vertices(); //actualizamos la lista de vertices
             vertices.next();
         }
-        int produccion = 1200 - tiempo;
-        System.out.println("El tiempo de producción semanal de pintura es:"
-                + " " + produccion / 60 + " horas y " + produccion % 60 + " minutos");
-        System.out.println("El tiempo de disposición es:"
-                + " " + tiempo / 60 + " horas y " + tiempo % 60 + " minutos");
-        String s = "La secuencia de producción: ";
+        int produccion = 7200 - tiempo;
+        String s = "El tiempo de producción semanal de pintura es: "
+                + produccion / 60 + " horas y " + produccion % 60 + " minutos"
+                + "\nEl tiempo de disposición es: "
+                + tiempo / 60 + " horas y " + tiempo % 60 + " minutos"
+                + "\nLa secuencia de producción: ";
         for (int i = 0; i < elementos.size(); i++) {
             s += elementos.get(i).getId();
             if (i < elementos.size() - 1) {
                 s += " - ";
+            } else {
+                s += "\n";
             }
         }
-        System.out.println(s);
+        return s;
     }
 }
