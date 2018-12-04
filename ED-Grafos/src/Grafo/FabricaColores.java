@@ -9,7 +9,7 @@ import java.util.*;
 
 /**
  *
- * @author hecto
+ * @author Héctor y Juan
  */
 public class FabricaColores {
 

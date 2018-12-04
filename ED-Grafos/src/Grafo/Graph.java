@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author EPS
+ * @author Héctor y Juan
  */
 public interface Graph {
 

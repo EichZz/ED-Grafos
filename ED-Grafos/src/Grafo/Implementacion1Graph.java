@@ -9,7 +9,7 @@ import java.util.*;
 
 /**
  *
- * @author EPS
+ * @author Héctor y Juan
  */
 public class Implementacion1Graph implements Graph {
 

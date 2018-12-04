@@ -9,7 +9,7 @@ import java.util.*;
 
 /**
  *
- * @author juani_000
+ * @author Héctor y Juan
  */
 public class Prueba {
 

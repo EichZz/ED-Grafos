@@ -7,7 +7,7 @@ package Grafo;
 
 /**
  *
- * @author EPS
+ * @author Héctor y Juan
  */
 public class Edge {
 

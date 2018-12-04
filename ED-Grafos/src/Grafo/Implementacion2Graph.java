@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author hecto
+ * @author Héctor y Juan
  */
 public class Implementacion2Graph implements Graph {
 
