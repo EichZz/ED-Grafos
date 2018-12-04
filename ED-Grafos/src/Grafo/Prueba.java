@@ -19,7 +19,7 @@ public class Prueba {
         System.out.println("Para 10 colores, nrep: 100000, t: " + test10colores(100000) + " ns");
         
         /*
-        Datos de pruebas
+        Datos de las pruebas
             Implementación 1
                 Para 5 colores, nrep: 100000, t: 11360 ns
                 Para 8 colores, nrep: 100000, t: 26464 ns
