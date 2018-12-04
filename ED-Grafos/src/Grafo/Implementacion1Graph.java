@@ -24,7 +24,7 @@ public class Implementacion1Graph implements Graph {
 
     @Override
     public Vertex[] endVertices(Edge e) {
-        Vertex[] vectorVertices = null;
+        Vertex[] vectorVertices = new Vertex[2];
 
         Vertex aux = vertice0;
 
@@ -93,17 +93,16 @@ public class Implementacion1Graph implements Graph {
     public boolean insertVertex(Object o) {
 
         boolean contains = contains(o);
-        if (contains) {
+        if (!contains) {
             Vertex nuevo = new Vertex(o);
-            Iterator<Vertex> it = vertices();
             Vertex aux = vertice0;
-            while (it.hasNext()) {
-                aux = (Vertex) it.next();
+            while (aux.getNext()!=null) {
+                aux = aux.getNext();
             }
             aux.setNext(nuevo);
             ampliarMatriz();
         }
-        return contains;
+        return !contains;
     }
 
     @Override
@@ -111,7 +110,7 @@ public class Implementacion1Graph implements Graph {
         int i = getIndex(v);
         int j = getIndex(w);
         boolean resul = false;
-        if (matrizAdyaciencia[i][j] != null) {
+        if (matrizAdyaciencia[i][j] == null) {
             matrizAdyaciencia[i][j] = new Edge(o);
             resul = true;
         }

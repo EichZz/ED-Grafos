@@ -24,7 +24,7 @@ public class Implementacion2Graph implements Graph {
 
     @Override
     public Vertex[] endVertices(Edge e) {
-        Vertex[] vectorVertices = null;
+        Vertex[] vectorVertices = new Vertex[2];
         boolean enc = false;
         Vertex aux = vertice0;
 
@@ -107,31 +107,37 @@ public class Implementacion2Graph implements Graph {
     public boolean insertVertex(Object o) {
 
         boolean contains = contains(o);
-        if (contains) {
+        if (!contains) {
             Vertex nuevo = new Vertex(o);
-            Iterator<Vertex> it = vertices();
             Vertex aux = vertice0;
-            while (it.hasNext()) {
-                aux = (Vertex) it.next();
+            while (aux.getNext() != null) {
+                aux = aux.getNext();
             }
             aux.setNext(nuevo);
         }
-        return contains;
+        return !contains;
     }
 
     @Override
     public boolean insertEdge(Vertex v, Vertex w, Object o) {
         boolean enc = false;
-        Edge aux = v.getEdge();
-        while (aux != null && !enc) {
-            if (aux.getVertex() == w) {
+        Edge next = v.getEdge();
+        Edge previo = null;
+        while (next != null && !enc) {
+            if (next.getVertex() == w) {
                 enc = true;
             }
-            aux = aux.getNext();
+            previo = next;
+            next = next.getNext();
         }
         if (!enc) {
-            aux = new Edge(o);
-            aux.setVertex(w);
+            next = new Edge(o);
+            next.setVertex(w);
+            if (v.getEdge() == null) {
+                v.setEdge(next);
+            }else{
+            previo.setNext(next);
+            }
         }
         return !enc;
     }
@@ -142,6 +148,13 @@ public class Implementacion2Graph implements Graph {
         boolean contains = contains(v.getId());
         if (contains) {
             disengageVertex(v);
+            Iterator it = edges();
+            while (it.hasNext()) {
+                Edge next = (Edge) it.next();
+                if (next.getVertex() == v) {
+                    removeEdge(next);
+                }
+            }
         }
         return contains;
     }
@@ -161,6 +174,7 @@ public class Implementacion2Graph implements Graph {
         Vertex next = vertice0;
         while (next != null) {
             aux.add(next);
+            next = next.getNext();
         }
         return aux.iterator();
     }
@@ -235,18 +249,22 @@ public class Implementacion2Graph implements Graph {
 
         while (aux != null && !enc) {
             Edge edge = aux.getEdge();
-            Edge next = edge.getNext();
-            if (edge == e) {
-                aux.setEdge(next);
-                enc = true;
-            }
-            while (next != null && !enc) {
-                if (next == e) {
-                    edge.setNext(next.getNext());
+            if (edge.getNext() != null) {
+                Edge next = edge.getNext();
+                if (edge == e) {
+                    aux.setEdge(next);
                     enc = true;
                 }
-                edge = next;
-                next = edge.getNext();
+                while (next != null && !enc) {
+                    if (next == e) {
+                        edge.setNext(next.getNext());
+                        enc = true;
+                    }
+                    edge = next;
+                    next = edge.getNext();
+                }
+            } else {
+                aux.setEdge(null);
             }
             aux = aux.getNext();
         }
