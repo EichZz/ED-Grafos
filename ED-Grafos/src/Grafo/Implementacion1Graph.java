@@ -96,7 +96,7 @@ public class Implementacion1Graph implements Graph {
         if (!contains) {
             Vertex nuevo = new Vertex(o);
             Vertex aux = vertice0;
-            while (aux.getNext()!=null) {
+            while (aux.getNext() != null) {
                 aux = aux.getNext();
             }
             aux.setNext(nuevo);
@@ -218,29 +218,19 @@ public class Implementacion1Graph implements Graph {
         Edge[][] matrizaux = new Edge[max - 1][max - 1];
 
         int posi = 0;
-        int i = 0;
-
-        while (i < max) {
-
-            int j = 0;
-            int posj = 0;
-
+        for (int i = 0; i < max; i++) {
             if (i != index) {
-
-                while (j < max) {
-
+                int posj = 0;
+                for (int j = 0; j < max; j++) {
                     if (j != index) {
                         matrizaux[i - posi][j - posj] = matrizAdyaciencia[i][j];
                     } else {
                         posj++;
                     }
-                    j++;
                 }
-
             } else {
                 posi++;
             }
-            i++;
         }
         matrizAdyaciencia = matrizaux;
     }
@@ -249,14 +239,10 @@ public class Implementacion1Graph implements Graph {
         int max = matrizAdyaciencia[0].length;
         Edge[][] matrizaux = new Edge[max + 1][max + 1];
 
-        int i = 0;
-        while (i < max) {
-            int j = 0;
-            while (j < max) {
+        for (int i = 0; i < max; i++) {
+            for (int j = 0; j < max; j++) {
                 matrizaux[i][j] = matrizAdyaciencia[i][j];
-                j++;
             }
-            i++;
         }
         matrizAdyaciencia = matrizaux;
     }
